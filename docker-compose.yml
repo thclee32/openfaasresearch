@@ -1,5 +1,17 @@
 version: "3.3"
 services:
+    minio:
+      image: minio/minio:RELEASE.2019-06-27T21-13-50Z
+      volumes:
+        - /mnt/data:/data
+      ports:
+        - "9000:9000"
+      network_mode: "host"
+      environment:
+        MINIO_ACCESS_KEY: minio
+        MINIO_SECRET_KEY: minio123
+      command: server /data
+
     gateway:
         ports:
             - 8080:8080
